@@ -1,0 +1,45 @@
+<div class="card my-2">
+
+  <div class="card-header">
+    <h6>{{forecastPoint.dt | date:'EEEE HH:mm' }}</h6>
+  </div>
+
+  <div class="card-body">
+
+    <div class="row align-middle">
+
+      <div class="col font-weight-bold">
+        {{forecastPoint.weather[0].description}}
+      </div>
+
+      <div class="col text-center" style="padding: 0px;">
+        <img [src]="forecastPoint.weather[0].iconUrl" />
+      </div>
+
+      <div class="col text-right forecast-temp">
+        <span>{{forecastPoint.main.temp | number:'1.0-0'}}&#8451;</span>
+      </div>
+
+    </div>
+  </div>
+
+  <ul class="list-group list-group-flush forecast-details">
+    
+    <li class="list-group-item">
+      <span class="float-left">Rain: {{forecastPoint.rain['3h'] | number:'1.1-1' }}mm</span>
+      <span class="float-right">Snow: {{forecastPoint.snow['3h'] | number:'1.1-1' }}mm</span>
+    </li>
+
+    <li class="list-group-item">
+      <span class="float-left">Wind: {{forecastPoint.wind.speed | number:'1.0-0' }}m/s</span>
+      <span class="float-right">Humidity: {{forecastPoint.main.humidity | number:'1.0-0' }}%</span>
+    </li>
+
+    <li class="list-group-item">
+      <span class="float-left">Pressure: {{forecastPoint.main.pressure | number:'1.0-0' }}hPa</span>
+      <span class="float-right">Clouds: {{forecastPoint.clouds.all | number:'1.0-0' }}%</span>
+    </li>
+
+  </ul>
+
+</div>

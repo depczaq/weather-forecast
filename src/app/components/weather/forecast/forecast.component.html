@@ -1,0 +1,19 @@
+<div *ngIf="forecast">
+
+  <h2 class="forecast-header mt-4">5 day wheater forecast for {{ getCity() }}</h2>
+
+  <h4 class="forecast-section-header my-3">Next 24 hours</h4>
+
+  <div class="card-deck">
+    <wf-forecast-card [forecastPoint]="point1" *ngFor="let point1 of forecast.list.slice(0,8)">
+    </wf-forecast-card>
+  </div>
+
+  <h4 class="forecast-section-header my-3">Next days</h4>
+
+  <div class="card-deck">
+    <wf-forecast-card [forecastPoint]="point2" *ngFor="let point2 of forecast.list.slice(8)">
+    </wf-forecast-card>
+  </div>
+
+</div>
