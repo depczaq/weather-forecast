@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AppSettings } from 'app/common/app-settings';
-import { Forecast } from 'app/models/forecast.model';
+import { Forecast, ForecastPoint } from 'app/models/forecast.model';
+import { WfConstants } from 'app/shared/wf-constants';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, retry, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,17 +15,52 @@ export class WeatherService {
 
   public getWeatherForecast(cityName: string, countryCode: string): Observable<Forecast> {
     const params = this.createRequestParams(cityName, countryCode);
-    return this.httpClient.get<Forecast>(AppSettings.FORECAST_URL, { params })
+    return this.httpClient.get<Forecast>(WfConstants.FORECAST_URL, { params })
       .pipe(
+        tap(response => this.preProcessResponse(response)),
         retry(3),
         catchError(this.handleError)
       );
   }
 
+  public preProcessResponse(forecast: Forecast): void {
+    forecast.list.forEach(element => {
+      this.addIconUrl(element);
+      this.convertTime(element);
+      this.defaultSnowIfMissing(element);
+      this.defaultRainIfMissing(element);
+    });
+  }
+
+  private convertTime(element: ForecastPoint): any {
+    element.dt = element.dt * 1000; // form UNIX format (seconds) to milliseconds
+  }
+
+  private addIconUrl(element: ForecastPoint) {
+    const iconUrl = WfConstants.ICONS_URL.replace(WfConstants.ICONS_ID_TOKEN, element.weather[0].icon);
+    element.weather[0].iconUrl = iconUrl;
+  }
+
+  private defaultSnowIfMissing(element: ForecastPoint): any {
+    if (!element.snow || element.snow['3h']) {
+      element.snow = {
+        '3h': 0
+      };
+    }
+  }
+
+  private defaultRainIfMissing(element: ForecastPoint): any {
+    if (!element.rain || element.rain['3h']) {
+      element.rain = {
+        '3h': 0
+      };
+    }
+  }
+
   private createRequestParams(cityName: string, countryCode: string): any {
     const params = {};
-    params[AppSettings.APPID_PARAM] = AppSettings.APPID_VALUE;
-    params[AppSettings.LOCATION_PARAM] = [cityName, countryCode].join(',');
+    params[WfConstants.LOCATION_PARAM] = [cityName, countryCode].join(',');
+    params[WfConstants.UNITS_PARAM] = WfConstants.UNITS_VALUE;
     return params;
   }
 

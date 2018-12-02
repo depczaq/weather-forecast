@@ -1,6 +1,6 @@
 export interface Forecast {
     city: City;
-    list: List;
+    list: ForecastPoint[];
 }
 
 interface City {
@@ -9,12 +9,12 @@ interface City {
     country: string;
 }
 
-interface List {
+export interface ForecastPoint {
 
     dt: number; // Time of data forecasted, unix, UTC
     dt_txt: string; // Data/time of calculation, UTC
     main: Main;
-    weather: Weather;
+    weather: Weather[];
     clouds: Clouds;
     wind: Wind;
     rain: Rain;
@@ -36,6 +36,7 @@ interface Weather {
     main: string; // Group of weather parameters (Rain, Snow, Extreme etc.)
     description: string; // Weather condition within the group
     icon: string; // Weather icon id
+    iconUrl: string; // icon URL
 }
 
 interface Clouds {
