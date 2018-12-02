@@ -5,7 +5,8 @@
 * I've chosen Angular, because it offers such features as SCSS pre-processor, HTTP connectivity, RxJS, unit testing framework practically out of the box
 * it also ensures that JS code will be compatible with every popular browser (thanks to polyfills), as well as offers good performance (AOT compilation, prod mode)
 * bootstrap will provide reasonably nice UI and user experience with a small amount of effort, as well as support for mobiles (media queries, breakpoints)
-* page should be responsive to different screen sizes 
+* page should be responsive to different screen sizes
+* page should look good on mobile
 * page should display the nearest forecast in more visible way, forecast for next days should be less visible/smaller or less detailed
 * some graphic features (i.e. weather icons) would be nice
 * page should allow to change units (i.e. *C / *F)
@@ -19,10 +20,11 @@
 ## Trade-offs
 
 * no possibility to chose units
-* simple, not so attractive, layout
+* simple, not so attractive UI
 
 ## Improvement ideas
 * graphic data representation (i.e. charts, diagrams etc)
+* more attractive UI
 * page should allow to search for location or use current location using [Geolocation WebAPI](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
 * location search textfield with suggestions (from city.json data file) - backend support required
 * more detailed data displayed
