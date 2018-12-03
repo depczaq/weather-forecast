@@ -33,7 +33,7 @@
 
 ## Deployed version
 
-
+Link: [https://weather-forecast-buildit.firebaseapp.com/](https://weather-forecast-buildit.firebaseapp.com/)
 
 ## Running
 
