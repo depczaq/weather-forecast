@@ -1,7 +1,7 @@
 export class WfConstants {
 
     // OpenWeather API
-    public static WEATHER_API_BASE_URL = 'https://api.openweathermap.org/';
+    public static WEATHER_API_BASE_URL = 'https://api.openweathermap.org';
     public static FORECAST_URL = WfConstants.WEATHER_API_BASE_URL + '/data/2.5/forecast';
 
     public static LOCATION_PARAM = 'q'; // value: {cityName},{countryCode}
