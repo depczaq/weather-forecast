@@ -31,7 +31,7 @@
 * internationalization, units
 * combination with other endpoints (current weather, 16 day forecast, maps?)
 
-## Deployed version
+## Deployed application
 
 Link: [https://weather-forecast-buildit.firebaseapp.com/](https://weather-forecast-buildit.firebaseapp.com/)
 
