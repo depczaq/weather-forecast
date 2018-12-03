@@ -1,7 +1,7 @@
 export class WfConstants {
 
     // OpenWeather API
-    public static WEATHER_API_BASE_URL = 'http://api.openweathermap.org/';
+    public static WEATHER_API_BASE_URL = 'https://api.openweathermap.org/';
     public static FORECAST_URL = WfConstants.WEATHER_API_BASE_URL + '/data/2.5/forecast';
 
     public static LOCATION_PARAM = 'q'; // value: {cityName},{countryCode}
@@ -13,5 +13,5 @@ export class WfConstants {
     public static UNITS_VALUE = 'metric';
 
     public static ICONS_ID_TOKEN = '{icondId}';
-    public static ICONS_URL = 'http://openweathermap.org/img/w/' + WfConstants.ICONS_ID_TOKEN + '.png';
+    public static ICONS_URL = 'https://openweathermap.org/img/w/' + WfConstants.ICONS_ID_TOKEN + '.png';
 }
